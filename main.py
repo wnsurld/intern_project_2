@@ -1,23 +1,18 @@
-import csv
-from dbconn import db_connection
+import os
+from services.dbconn import db_connection
+from services.get_header import get_header
+from services.hide_header import hide_header
+from services.zip_folder import zip_dicom_folder
 
-id = input("업로드할 ID : ")
+folder_name = input("업로드 할 DICOM 폴더 : ")
+folder_path = os.path.join("dicom", folder_name)    #폴더 경로
+dicom_files = [file for file in os.listdir(folder_path) if file.lower().endswith(".dcm")]
+first_file = os.path.join(folder_path, dicom_files[0]) #폴더 내 첫번째 파일 경로
 
-#db에 저장된 데이터 쿼리
-conn = db_connection()  #dbconn.py의 db_connection() 생성할것
-cur = conn.cursor()
-query = "SELECT * FROM sample_data WHERE id = %s;"
-cur.execute(query, (id,))
-rows = cur.fetchall()
-column_names = [desc[0] for desc in cur.description]  #select한 객체들의 id값 추출
+dcm_header = get_header(first_file) #헤더 필드 get
 
-#쿼리한 데이터 csv로 변환 후 NAS에 저장
-file_path = fr"Z:\sample_data_{id}.csv" #nas 폴더에 csv파일저장(경로 다시 확인 필요)
-with open(file_path, mode='w', newline='', encoding='utf-8-sig') as file:
-    writer = csv.writer(file)
-    writer.writerow(column_names)
-    writer.writerows(rows)
-print("CSV파일 변환 및 NAS 저장 완료")
+hide_dcm_header = hide_header(folder_name, dcm_header, dicom_files) #헤더 필드 익명화
 
-cur.close()
-conn.close()
+zip_dcm_file = zip_dicom_folder(folder_path) #dicom 파일 압축
+
+#nas 업로드 구현 예정
