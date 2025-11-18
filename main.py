@@ -33,4 +33,8 @@ upload_to_s3(nas_folder_path)
 #nas 삭제
 delete_from_nas(nas_folder_path)
 
-# db테이블 생성하고 nas 삭제 주석화 해서 잘 되나 확인하기. s3 env작성하기
+'''
+cloud sync 끊기 / 이메일 원문 수정 정도? 
+람다 쪽 => s3에서 nas로 업로드하면
+nas에서 폴더이름으로 쿼리 후 원본 헤더 반환까지?
+'''
