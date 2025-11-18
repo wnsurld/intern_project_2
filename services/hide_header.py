@@ -38,3 +38,4 @@ def hide_header(folder_name, header, dicom_files, folder_path):
 
         os.replace(temp_path, file_path)
     print("헤더 수정 완료")
+    
