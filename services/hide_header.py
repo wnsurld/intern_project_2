@@ -31,7 +31,8 @@ def hide_header(folder_name, header, dicom_files, folder_path):
             dcm = pydicom.dcmread(dcm_file)
 
         for key in header:
-            setattr(dcm, key, "anonymous")
+            if(key != "StudyInstanceUID"):
+                setattr(dcm, key, "anonymous")
         
         temp_path = file_path + ".tmp"
         dcm.save_as(temp_path)
