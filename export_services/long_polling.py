@@ -1,5 +1,6 @@
 import time
 from export_services.sqsconn import sqs_conn
+from export_services.handle_message import handle_message
 
 def long_polling():
     sqs = sqs_conn()

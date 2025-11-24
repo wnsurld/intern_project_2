@@ -9,7 +9,7 @@ def zip_dicom_folder(folder_path):
     zip_full_path = os.path.join(target_dir, base_name)
 
     #압축 생성
-    shutil.make_archive(zip_full_path, 'zip', folder_path)
+    shutil.make_archive(zip_full_path, 'zip', root_dir=target_dir, base_dir=base_name)
     print("압축 완료")
     
     return zip_full_path + ".zip"
