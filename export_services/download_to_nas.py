@@ -16,6 +16,6 @@ def download_to_nas(bucket, key):
     # 폴더가 없으면 생성
     os.makedirs(extract_folder_path, exist_ok=True)
 
-    # 3) 압축 해제
+    # 압축 해제
     shutil.unpack_archive(zip_path, extract_folder_path)
     return extract_folder_path

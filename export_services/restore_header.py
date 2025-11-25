@@ -12,7 +12,7 @@ def restore_header(file_path):
     cur = db.cursor()
     cur.execute("""
                 SELECT * FROM study
-                WHERE folder_name = %s
+                WHERE study_instance_uid = %s
                 """,(header["StudyInstanceUID"],))
     row = cur.fetchone()
 

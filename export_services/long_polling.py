@@ -1,6 +1,9 @@
-import time
+import time, os
 from export_services.sqsconn import sqs_conn
 from export_services.handle_message import handle_message
+from dotenv import load_dotenv
+load_dotenv()
+SQS_QUEUE_URL = os.getenv("SQS_QUEUE_URL")
 
 def long_polling():
     sqs = sqs_conn()

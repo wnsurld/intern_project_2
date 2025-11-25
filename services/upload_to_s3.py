@@ -1,5 +1,8 @@
 import os
+from dotenv import load_dotenv
 from services.s3conn import s3_connection, get_bucketName
+
+load_dotenv()
 
 def upload_to_s3(nas_zip_path):
     s3 = s3_connection()

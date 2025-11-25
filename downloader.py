@@ -1,9 +1,3 @@
-# sqs 주기적으로 확인
+from export_services.long_polling import long_polling
 
-# 메세지에서 버킷키, 파일 확인
-
-# 해당 파일 Z드라이브 저장
-
-# 저장된 파일 헤더 원본화
-
-#로컬 다운로드
+long_polling()
